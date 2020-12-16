@@ -6,10 +6,18 @@
     <title>Chat App</title>
 </head>
 <body>
-    <h1>Chat App</h1>
-    <form action="#" method="POST">
-        <input type="text" name="username" placeholder="Username">
-        <input type="submit" value="submit">
-    </form>
+    <h1>Chat app</h1>
+    <div id="chatroom">
+
+        <div id="feedback"></div>
+    </div>
+
+    <input id="message" type="text" name="message" autocomplete="off" placeholder="Write here...">
+    <input id="send_message" type="submit" value="Send">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+    </script>
 </body>
 </html>
