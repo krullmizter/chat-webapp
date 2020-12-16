@@ -7,17 +7,15 @@
 </head>
 <body>
     <h1>Chat app</h1>
-    <div id="chatroom">
 
-        <div id="feedback"></div>
-    </div>
+    <form class="chat">
+        <input type="text" name="chat__input" class="chat__input">
+        <input type="submit" class="chat__submit" value="Send">
+    </form>
 
-    <input id="message" type="text" name="message" autocomplete="off" placeholder="Write here...">
-    <input id="send_message" type="submit" value="Send">
+    <div class="chat__output"></div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket = io();
-    </script>
+    <script src="/static/chat.js"></script>
 </body>
 </html>

@@ -9,26 +9,21 @@ app.get('/', function(req, res) {
 });
 
 http.listen(port, function() {
-    console.log(`Listening at http://localhost:${port}`);
+    console.log(`Listening on: http://localhost:${port}`);
 });
 
-// Socket.io
+// Socket.io server side
+
 const io = require('socket.io')(http);
 
-const users = [];
-
 io.on('connection', (socket) => {
-    let randId = uuid.v4();
+    socket.username = 'Anon'
+    socket.id       = uuid.v4()
 
-    socket.username = 'Anon';
-    socket.id       = randId;
+    console.log("Welcome: " + socket.username + '! ID: ' + socket.id)
 
-    console.log("Welcome: " + socket.username + '! ID: ' + socket.id);
-
-    users.push({username: socket.username, id: socket.id});
-
-    socket.on('msg', (data) => {
-        io.sockets.emit('msg', {message : data.message, username : socket.username});
+    socket.on('chat', message => {
+        io.emit('chat', {message, id: socket.id}) // Transferer chat message to all clients
     })
 
     socket.on('disconnect', () => {
