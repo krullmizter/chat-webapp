@@ -1,29 +1,30 @@
 // Node.js & Express.js
-const app  = require('express')();
-const http = require('http').Server(app);
-const port = process.env.PORT || 3000;
-const uuid = require('uuid');
+const express = require('express')
+const app     = express()
+const http    = require('http').Server(app)
+const port    = process.env.PORT || 3000
+const path    = require('path')
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
-});
+app.use(express.static(path.join(__dirname + '/public')))
 
-http.listen(port, function() {
-    console.log(`Listening on: http://localhost:${port}`);
+http.listen(port, () => {
+    console.log(`Running on: http://localhost:${port}`);
 });
 
 // Socket.io server side
-
-const io = require('socket.io')(http);
+const io   = require('socket.io')(http)
+const uuid = require('uuid')
 
 io.on('connection', (socket) => {
+    console.log('Users connected')
     socket.username = 'Anon'
     socket.id       = uuid.v4()
 
     console.log("Welcome: " + socket.username + '! ID: ' + socket.id)
 
     socket.on('chat', message => {
-        io.emit('chat', {message, id: socket.id}) // Transferer chat message to all clients
+        console.log('From client: ', message)
+        io.emit('chat', message)
     })
 
     socket.on('disconnect', () => {

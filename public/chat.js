@@ -10,13 +10,13 @@ chat.addEventListener('submit', e => {
     chatInput.value = ''
 })
 
-const output = ({message, id}) => {
+const output = (message) => {
     const div = document.createElement('div')
     div.classList.add('chat__msg')
 
-    if (id === socket.id) {
+    /*if (id === socket.id) {
         div.classList.add('chat__msg--usr')
-    }
+    }*/
     
     div.innerText = message
     chatOutput.appendChild(div)
@@ -24,4 +24,5 @@ const output = ({message, id}) => {
 
 socket.on('chat', message => {
     output(message)
+    console.log('From server: ', message)
 })
