@@ -3,28 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App</title>
+    <title>💬 Samuel's Chat App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<style>
-    body {
-        background-color: black;
-    }
-
-    p,
-    h1,
-    div {
-        color: white;
-    }
-</style>
 <body>
-    <h1>Chat app</h1>
+    <h1>Samuel's Chat App</h1>
 
-    <form class="chat">
-        <input type="text" name="chat__input" class="chat__input">
-        <input type="submit" class="chat__submit" value="Send">
-    </form>
+    <div class="chat">
+        <div class="chat__output"></div>
 
-    <div class="chat__output"></div>
+        <form class="chat__form">
+            <input type="text" class="chat__form-input" placeholder="Chat here">
+            <button type="submit" class="chat__form-submit">Send</button>
+        </form>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="chat.js"></script>

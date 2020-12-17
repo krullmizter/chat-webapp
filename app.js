@@ -15,19 +15,23 @@ http.listen(port, () => {
 const io   = require('socket.io')(http)
 const uuid = require('uuid')
 
-io.on('connection', (socket) => {
-    console.log('Users connected')
+const users = {}
+
+io.on('connection', socket => {
     socket.username = 'Anon'
     socket.id       = uuid.v4()
 
-    console.log("Welcome: " + socket.username + '! ID: ' + socket.id)
-
-    socket.on('chat', message => {
-        console.log('From client: ', message)
-        io.emit('chat', message)
+    socket.on('new-user', name => {
+        socket.broadcast.emit('user-connected', name)
+        users[socket.id] = name
     })
 
     socket.on('disconnect', () => {
-        console.log('User: Disconnected...')
+        socket.broadcast.emit('user-disconnected', users[socket.id])
+        delete users[socket.id]
+    })
+
+    socket.on('chat-send', message => {
+        socket.broadcast.emit('chat-msg', {message:message, name:users[socket.id]})
     })
 });
