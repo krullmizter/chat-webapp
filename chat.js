@@ -11,6 +11,7 @@ function chatAppend(data) {
     const div = document.createElement('div')
     div.innerText = data
     chatOutput.append(div)
+    chatInput.focus()
 }
 
 socket.on('user-connected', name => {
@@ -18,20 +19,15 @@ socket.on('user-connected', name => {
 })
 
 socket.on('user-disconnected', name => {
-    if (name !== null) {
-        chatAppend(`😥 ${name} disconnected`)
-    }
+    chatAppend(`😥 ${name} disconnected`)
+})
+
+socket.on('chat-msg', data => {
+    chatAppend(`${data.time} ${data.name}: ${data.message}`)
 })
 
 chat.addEventListener('submit', e => {
     e.preventDefault()
-    socket.emit('chat-send', chatInput.value)
+    socket.emit('chat', chatInput.value)
     chatInput.value = ''
 })
-
-socket.on('chat-msg', data => {
-    var date = new Date();
-    var time = date.getHours() + ':' + ((date.getMinutes() < 10 ? '0' : '') + date.getMinutes()) + ':' + date.getSeconds();
-    chatAppend(`${time} ${data.name}: ${data.message}`)
-})
-
