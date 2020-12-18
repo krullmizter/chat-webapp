@@ -3,12 +3,11 @@ const express = require('express')
 const app     = express()
 const http    = require('http').Server(app)
 const port    = 3000
-const path    = require('path')
 
-app.use(express.static(path.join(__dirname + '')))
+app.use(express.static('client'))
 
 http.listen(port, () => {
-    console.log(`Running on: http://localhost:${port}`);
+    console.log(`Running on: http://localhost:${port}`)
 });
 
 // Socket.io server side
@@ -32,7 +31,7 @@ io.on('connection', socket => {
 
     socket.on('chat', message => {
         let d = new Date();
-        let t = d.getHours() + ':' + ((d.getMinutes() < 10 ? '0' : '') + d.getMinutes());
+        let t = d.getHours() + ':' + ((d.getMinutes() < 10 ? '0' : '') + d.getMinutes())
         
         socket.broadcast.emit('chat-msg', {time:t, name:users[socket.id], message:message})
     })

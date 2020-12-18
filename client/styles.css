@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0 2%;
+    box-sizing: border-box;
+
+    min-height: 100vh;
+    background-color: #282828;
+    color: #00ff66;
+}
+
+body,
+input,
+button {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+.chat__output {
+    margin-bottom: 10px;
+}

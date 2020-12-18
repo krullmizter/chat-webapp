@@ -4,6 +4,7 @@ const chat       = document.querySelector('.chat')
 const chatInput  = document.querySelector('.chat__form-input')
 const chatOutput = document.querySelector('.chat__output')
 
+
 const name = prompt("What's your name?")
 socket.emit('new-user', name)
 
