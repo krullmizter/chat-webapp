@@ -5,8 +5,8 @@ This is a personal Node.js project to create a simple chat web app. This project
 #### What's used
 
 * Node.js
- + Nodemon
- + UUID
+	* Nodemon
+	* UUID
 * Express.js
 * Socket.io
 
