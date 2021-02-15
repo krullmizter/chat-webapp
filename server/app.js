@@ -7,7 +7,7 @@ const port    = 3000
 app.use(express.static('client'))
 
 http.listen(port, () => {
-    console.log(`Running on: http://localhost:${port}`)
+    console.log(`🚀 Running on: http://localhost:${port}`)
 });
 
 // Socket.io server side
