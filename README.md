@@ -14,6 +14,8 @@ This is a personal Node.js project to create a simple chat web app. This project
 
 The app uses Node.js to handle the back-end javascript. The Express.js framework takes care of running the web app on the web. Socket.io handles real-time input from the connected users and the server. This in turn lets you chat with another person via the browser just like WhatsApp and Facebook Messenger.
 
+#### Test it 👨‍💻
+
 At this time the project runs localy on the users system. To get started with this project just: 
 - `git clone`
 - Have node & npm installed.
